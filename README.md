@@ -37,17 +37,19 @@ Manages adding and displaying expenses.
 ### `expense_tracker/budget_manager.py`
 Handles budget setting and tracking.
 - `set_budget()` — prompts the user to enter a monthly budget and returns it.
-- `track_budget()` — sums all expense amounts and compares the total against the set budget. Displays either an exceeded warning or the remaining balance.
+- `calculate_total_expenses()` — sums all expense amounts for the current month and returns the total.
+- `track_budget()` — aggregates expenses for the current month and compares the total against the set budget. Displays either an exceeded warning or the remaining balance.
 
 ### `expense_tracker/menu.py`
 Drives the application loop.
-- `display_menu()` — prints the five menu options.
+- `display_menu()` — prints the six menu options.
 - `run()` — loads expenses from CSV on startup, then enters a loop handling user selections:
   - Option 1: Add an expense
   - Option 2: View all expenses
-  - Option 3: Set budget and check spending
-  - Option 4: Save expenses to CSV
-  - Option 5: Save and exit
+  - Option 3: Set budget
+  - Option 4: Track budget (current month vs budget)
+  - Option 5: Save expenses to CSV
+  - Option 6: Save and exit
 
 ---
 
