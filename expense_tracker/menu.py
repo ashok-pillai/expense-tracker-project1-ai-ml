@@ -7,9 +7,10 @@ def display_menu() -> None:
     print("\n===== Personal Expense Tracker =====")
     print("1. Add Expense")
     print("2. View Expenses")
-    print("3. Set/Track Budget")
-    print("4. Save Expenses")
-    print("5. Save and Exit")
+    print("3. Set Budget")
+    print("4. Track Budget")
+    print("5. Save Expenses")
+    print("6. Save and Exit")
     print("=====================================")
 
 
@@ -22,7 +23,7 @@ def run() -> None:
 
     while True:
         display_menu()
-        choice = input("Select an option (1-5): ").strip()
+        choice = input("Select an option (1-6): ").strip()
 
         if choice == "1":
             add_expense(expenses)
@@ -30,12 +31,14 @@ def run() -> None:
             view_expenses(expenses)
         elif choice == "3":
             budget = set_budget()
-            track_budget(expenses, budget)
+            print(f"Budget set to ${budget:.2f}")
         elif choice == "4":
-            save_to_csv(expenses)
+            track_budget(expenses, budget)
         elif choice == "5":
+            save_to_csv(expenses)
+        elif choice == "6":
             save_to_csv(expenses)
             print("Goodbye!")
             break
         else:
-            print("Invalid option. Please enter a number between 1 and 5.")
+            print("Invalid option. Please enter a number between 1 and 6.")

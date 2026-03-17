@@ -10,15 +10,29 @@ def set_budget() -> float:
             print("Invalid amount. Please enter a number.")
 
 
-def track_budget(expenses: list, budget: float) -> None:
+def calculate_total_expenses(expenses: list, month: str) -> float:
     total = 0.0
     for expense in expenses:
         try:
+            if not expense.get("date", "").startswith(month):
+                continue
             total += float(expense["amount"])
         except (ValueError, TypeError, KeyError):
             continue
+    return total
 
-    print(f"\nTotal spent: ${total:.2f}")
+
+def track_budget(expenses: list, budget: float) -> None:
+    from datetime import datetime
+    if budget <= 0:
+        print("No budget set. Please set a budget first (Option 3).")
+        return
+
+    current_month = datetime.now().strftime("%Y-%m")
+    total = calculate_total_expenses(expenses, current_month)
+
+    print(f"\nMonth: {current_month}")
+    print(f"Total spent: ${total:.2f}")
     print(f"Monthly budget: ${budget:.2f}")
     if total > budget:
         print("You have exceeded your budget!")
